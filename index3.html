@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Map</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        #container {
+            display: flex;
+            height: 100%;
+        }
+
+        #map {
+            flex-grow: 1;
+        }
+
+        #info-panel {
+            width: 300px;
+            background-color: white;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-family: Arial, sans-serif;
+        }
+
+
+    
+        #info-panel h2 {
+            margin-top: 0;
+            color: #3b7bbf;
+        }
+    
+        #info-panel ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    
+        #info-panel li {
+            margin-bottom: 10px;
+        }
+    
+        #info-panel .property-label {
+            font-weight: bold;
+            color: #3b7bbf;
+        }
+
+        .map-overlay {
+            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            position: absolute;
+            top: -20px;
+            left: 320px;
+            width: 15%;
+            padding: 20px;
+        }
+
+        .map-overlay .map-overlay-inner {
+            background-color: #fafbfa;
+            box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+            border-radius: 3px;
+            opacity: 0.9;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="container">
+        <div id="info-panel">
+            <h2>Feature Information</h2>
+            <ul id="feature-properties"></ul>
+            <div id="feature-properties">
+                <h3></h3>
+                <p>Click on an area to see more information. Use the buttons to switch between displacement index and housing conditions.</p>
+            </div>
+            
+        </div>
+        <div id="map"></div>
+        <div class='map-overlay'>
+            <div class='map-overlay-inner'>
+                <h3><strong>Displacement Map<strong></h3>
+                <table><tr><td>
+                  <input type="radio" name="layers" id="displacement" value="DsplcRI" checked><label><strong>Diaplacement Index &nbsp; &nbsp;</strong></label><br>
+                  <input type="radio" name="layers" id="housing" value="HsngCnd"><label><strong>Housing Conditions &nbsp; </strong></label><br>
+                 </td>
+                 </tr>
+            </div>
+        </div>
+    </div>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
