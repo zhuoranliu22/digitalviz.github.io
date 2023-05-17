@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Introduction</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <!-- <link href="assets/img/favicon.png" rel="icon"> -->
+  <!-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet' />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+
+<style>
+     /* 在这里改地图的位置 */
+     #map { 
+      position:sticky; 
+      top: 0px;
+      bottom:0; 
+      width:80%;  
+      height: 400px; 
+      width: 650px;
+      padding-left: 0px;
+      padding-right: 0px;
+    
+    }
+    /* 在这里改filter的位置 */
+    .map-overlay {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        position: absolute;
+        top: 100px;
+        left: 0px;
+        width: 15%;
+        padding: 20px;
+    }
+    
+    .map-overlay .map-overlay-inner {
+        background-color: #fff;
+        box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+        border-radius: 3px;
+        opacity: 0.9;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+</head>
+
+<body>
+
+
+
+  <header id="header" class="header d-flex align-items-center">
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>Group7</h1>
+      </a>
+     
+      <!-- 导航栏 -->
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a ></li>
+          <li><a href="introduction.html">Introduction</a ></li>
+          <li><a href="DA_3.html">Housing Market</a ></li>
+          <li class="dropdown"><a href="#"><span>Demographic Analysis</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a >
+            <ul>
+              <li><a href="DA_1.html">Labour Market</a ></li>
+              <li><a href="DA_2.html">Income and Poverty</a ></li>
+
+            </ul>
+          </li>
+          <li><a href="index3.html">Displacement Map</a ></li>
+          <li><a href="data_bib.html">Data</a></li>  
+          <li><a href="team.html">Team</a ></li>
+        
+        </ul>
+      </nav><!-- .navbar -->
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header><!-- End Header -->
+  <!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="page-header d-flex align-items-center" style="background-image: url('');">
+        <div class="container position-relative">
+          <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 text-center">
+              <h2>Introduction Page</h2>
+              <p>NYC is a beautiful city</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <div class="container">
+          <ol>
+            <!-- 到时候这里放自己的主页home的html -->
+            <li><a href="index.html">Home</a></li>
+            <li>Introduction</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Breadcrumbs -->
+
+<!-- 这里开始正文 -->
+    <!-- ======= Blog Details Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row g-5">
+
+          <div class="col-lg-8">
+
+            <article class="blog-details custom-content">
+
+
+              <!-- 图片的一个模板（没放图） -->
+              <div class="post-img">
+                <img src="assets/img/nyc.jpg" alt="" class="img-fluid">
+              </div>
+
+              <!-- 标题名 -->
+              <h2 class="title">New York City</h2> 
+
+              <div class="meta-top">
+                
+              </div><!-- End meta top -->
+
+              <div class="content">
+
+                <p>
+                  New York is a vibrant city known for its diversity, rich history, and iconic landmarks. With a population of over 8 million people, New York is one of the largest and most influential cities in the world. 
+                  The city's residents come from a wide range of cultural and ethnic backgrounds, creating a diverse and dynamic community that is unlike any other.
+                </p>  
+
+                <p>
+                  However, with the city's rapid population growth and development, 
+                  the issue of gentrification has become a pressing concern for many residents. 
+                  Gentrification refers to the process of urban renewal that occurs when more affluent residents move into historically working-class neighborhoods, 
+                  leading to rising property values, rent increases, and the displacement of long-time residents. 
+                </p>
+             
+                <p>
+
+                </p>
+                <!-- <div class="flourish-embed" data-src="story/1917072"><script src="https://public.flourish.studio/resources/embed.js"></script></div>                <p> -->
+                </p>
+              
+
+                <div class="flourish-embed" data-src="story/1917771" data-height="70%"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+                <p>
+                  This phenomenon is particularly acute in New York, 
+                  where the city's unique combination of population growth, cultural diversity, and limited housing supply has created a perfect storm for displacement risk.
+                </p>
+                <!-- <div class='map-overlay'>
+                  <div class='map-overlay-inner'>
+                      <h3><strong>Demographic Change in 2020-2021<strong></h3>
+                  <table><tr><td>
+                    <input type="radio" name="layers" id="layer1" value="PPC" checked><label><strong>Population Change &nbsp; &nbsp;</strong></label><br>
+                    <input type="radio" name="layers" id="layer2" value="WNH_PPC"><label><strong>White Population &nbsp; </strong></label><br>
+                      </td>
+                      </tr>
+                  </div>
+                </div> -->
+
+                <h3>Displacement of the Poor</h3>
+                <p>
+                  One effect of the growing housing pressure was that neighborhoods formerly considered forbidding became attractive to more affluent New Yorkers. 
+                  Places like the Lower East Side, Williamsburg, and Fort Greene all became popular residential destinations of the young professional class. With many affluent professionals moving in, 
+                  however, communities became increasingly concerned that rising rents would push existing residents out of their neighborhoods. Some community activists even began to question the desirability of community improvement, 
+                  fearing it contributes to rising rents and the displacement of low-income people.
+                </p>
+                <!-- 放了图片的例子 -->
+                <div style="display: flex; justify-content: center;">
+                  <img src="assets/img/intro1.png" class="img-fluid" alt="">
+                </div>
+                
+
+                <!-- <h3><br><br>Displacement Risk Map</h3>
+                
+               
+                 
+
+
+
+                <p>
+                  Our map is designed to help you navigate and understand the dynamics of displacement risk in New York City. By providing information on areas with the highest risk of displacement, 
+                  as well as the factors contributing to these risks, we hope to empower residents, policymakers, and community organizations to take action and create a more equitable and sustainable city for all.
+                  Go to the <a href="map.html">Displacement map</a> 
+                </p>
+                <div style="display: flex; justify-content: center;">
+                  <img src="assets/img/map.png" class="img-fluid" alt="" width="500" height="300">
+                <div> -->
+                
+
+              </div><!-- End post content 结束 -->
+            </article><!-- End blog post -->
+
+          </div>
+ 
+        </div>
+
+      </div>
+    </section><!-- End Blog Details Section -->
+
+  </main><!-- End #main -->
+
+
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-info">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span>Group7</span>
+          </a>
+          <p>This webpage is a group assignment for CASA0003. <br>
+            The main function of this webpage is to provide a searchable displacement risk map that shows the level of displacement risk in different communities.
+            </p>
+
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="introduction.html">Introduction</a></li>
+            <li><a href="DA_1.html">Demographic Analysis</a></li>
+            <li><a href="index3.html">Displacement Map</a></li>
+            <li><a href="data_bib.html">Data</a></li>
+            <li><a href="team.html">Team</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Team member</h4>
+          <ul>
+            <li><a href=" ">Jiaxuan Fan</a ></li>
+            <li><a href="https://github.com/zhuoranliu22">Zhuoran Liu</a ></li>
+            <li><a href="#">Xiao Jin</a ></li>
+            <li><a href="#">Yuhao Yin</a ></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>
+            UCL Centre for Advanced Spatial Analysis <br>
+            First Floor, 90 Tottenham Court Road<br>
+            London W1T 4TJ<br>
+            United Kingdom <br><br>
+            <strong>Phone:</strong> +44 (0)20 3108 3877<br>
+            <strong>Email:</strong> casa@ucl.ac.uk<br>
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <!-- <script src="assets/vendor/php-email-form/validate.js"></script> -->
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script src="map.js"></script>
+</body>
+
+</html>

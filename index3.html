@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/img/casalogo.png" rel="icon"> 
     <title>Your Map</title>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet' />
     <style>
@@ -14,8 +15,10 @@
 
         #container {
             display: flex;
-            height: 100%;
+            height: 91.8%; /* adjust as necessary based on the height of your navbar */
+            margin-top: 0px; /* adjust as necessary based on the height of your navbar */
         }
+
 
         #map {
             flex-grow: 1;
@@ -23,10 +26,11 @@
 
         #info-panel {
             width: 300px;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.6);
+            opacity: 0.6;
             padding: 20px;
             overflow-y: auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            
             font-family: Arial, sans-serif;
         }
 
@@ -34,7 +38,7 @@
     
         #info-panel h2 {
             margin-top: 0;
-            color: #3b7bbf;
+            color: #008374;
         }
     
         #info-panel ul {
@@ -51,51 +55,362 @@
             color: #3b7bbf;
         }
 
-        .map-overlay {
-            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-            position: absolute;
-            top: -20px;
-            left: 320px;
-            width: 15%;
-            padding: 20px;
+        #info-panel p.first{
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+        #info-panel p.second{
+            margin-left: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #0a4e0d;
+        }
+        #info-panel p.third{
+            margin-left: 15px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        #info-panel p.fourth{
+            margin-left: 15px;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        /* Top navigation style */
+        @keyframes slideInUp {
+            from {
+                transform: translateY(10%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        .map-overlay .map-overlay-inner {
-            background-color: #fafbfa;
-            box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
-            border-radius: 3px;
-            opacity: 0.9;
-            padding: 10px;
-            margin-bottom: 10px;
+        ul.navbar {
+            animation: slideInUp 0.6s ease-out;
         }
+
+        ul.navbar{
+            position: flex;
+            top: 0;
+            width: 100%;
+            height: 70px; 
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            
+            background-color: #008374;
+            opacity: 1;
+            
+        }
+
+        li{
+            float: right;
+        }
+        ul.navbar li{
+            white-space: nowrap;
+            padding: 10px 0 10px 28px;
+        }
+        ul.navbar li a{
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 17px;
+            text-decoration: none;
+            font-family:'Montserrat',sans-serif;
+            font-weight: bold;
+            position: relative;
+        }
+        ul.navbar li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: red;
+            bottom: 0;
+            left: 50%;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        /* ul.navbar li a:hover{
+                      color: white  ;
+                /* font-weight: bold;
+        background-color: #bba7cb; */
+                      /* font-weight: bold;
+                      border-bottom: 2px solid red
+
+
+        } */ 
+        ul.navbar li a:hover::after {
+            width: 100%;
+        }
+                /* .active {
+        background-color: #93BFCF;
+        } */
+        ul.navbar .dropdown ul {
+            display: block;
+            position: absolute;
+            left: 28px;
+            top: calc(100% + 30px);
+            margin: 0;
+            padding: 10px 0;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            background: #fff;
+            box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+            transition: 0.3s;
+            border-radius: 4px;
+        }
+
+        ul.navbar .dropdown ul li {
+            min-width: 200px;
+        }
+
+        ul.navbar .dropdown ul a {
+            padding: 10px 20px;
+            font-size: 15px;
+            text-transform: none;
+            font-weight: 600;
+            color: #006a5d;
+        }
+
+        ul.navbar .dropdown ul a i {
+            font-size: 12px;
+        }
+
+        .navbar .dropdown ul a:hover,
+        .navbar .dropdown ul .active:hover,
+        .navbar .dropdown ul li:hover>a {
+            color: var(--color-secondary);
+        }
+
+        ul.navbar .dropdown:hover>ul {
+            opacity: 1;
+            top: 100%;
+            visibility: visible;
+        }
+
+        ul.navbar .dropdown .dropdown ul {
+            top: 0;
+            left: calc(100% - 30px);
+            visibility: hidden;
+        }
+
+        ul.navbar .dropdown .dropdown:hover>ul {
+            opacity: 1;
+            top: 0;
+            left: 100%;
+            visibility: visible;
+        }
+
+        .variable-navbar {
+            width: 300px; /* Adjust width as necessary */
+            background-color: rgba(255, 255, 255, 0.6);
+            opacity: 0.6;
+            height: 100%;
+            position: flex;
+            z-index: 1; /* Sit on top */
+            top: 25px;
+            right: 30px;
+            overflow-x: hidden; /* Disable horizontal scroll */
+            padding-top: 10px; /* Place content 60px from the top */
+        }
+
+        .variable-navbar a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-family:'Montserrat',sans-serif;
+            font-weight: bold;
+            font-size: 22px;
+            color: #008374;
+            display: block;
+        }
+
+        .variable-navbar a:hover {
+            color: #f1aee8;
+        }
+
+        .variable-navbar a.active {
+            color: #4CAF50;
+        }
+
+        .variable-navbar p {
+            color: #333;  /* Adjust as needed */
+            font-size: 18px;  /* Adjust as needed */
+            /* color: #ca0738; */
+            font-weight: bold;
+            
+        }
+
+        .variable-navbar p {
+            margin-top: 10px;
+            margin-left: 20px;
+            margin-bottom: 60px;  /* Adjust as needed */
+            /* Other styles */
+        }
+
+        .legend {
+        background-color: #fff;
+        opacity: 0.7;
+        border-radius: 3px;
+        bottom: 80px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        }
+
+        #back-button {
+        background-color: #f8faf8; 
+        border: none;
+        color: #008374;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px; /* Rounded corners */
+        margin-bottom: 30px;
+        }
+
+        #back-button:hover {
+            background-color: #c4e1ee; /* Darker green on hover */
+
+        }
+
+        .index {
+            font-size: 15px;
+            border-radius: 15px;
+            border: 2px solid #ebb0cd;
+            background: #f0c4c4;
+            padding: 15px;
+            margin: 4px 2px;
+            text-align: center;
+            display: inline-flex;
+            height: 5px;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            width: fit-content; 
+        }   
+
+        hr {
+            border: none;
+            height: 1px;
+            color: #141111; /* Old browsers */
+            background-color: #333; /* Modern browsers */
+            margin-bottom: 40px;
+        }
+
+        hr.inside {
+            border: none;
+            height: 0.6px;
+            color: #090707; /* Old browsers */
+            margin-bottom: 10px;
+            width: 280px;
+        }
+        /* #container, #page2 {
+        min-height: 100%;
+        } */
+
+        /* #page2 {
+            background: rgba(255, 255, 255, 0.6); /* Change this to suit your design */
+            /* position: relative;  /* You can also use absolute or fixed, depending on your needs */
+            /* margin-top: 50px; */
+        /* } */
+        /* #map2 {
+            position: absolute;
+            top: 100px; /* Adjust as needed */
+            /* left: 350px; Adjust as needed */
+            /* margin-bottom: 400px; */
+            /* width: 800px; */
+            /* height: 70%; */
+        /* } */ 
+    
+
     </style>
     
 </head>
 <body>
+    <ul class="navbar">
+        <!-- <li style="float:right"><a  href="Home.html">Home</a></li> -->
+        <!-- <li><a class="active" href="About.html">Introduction</a></li> -->                      
+        <li><a href="team.html">Team</a></li>
+        <li><a href="data_bib.html">Data</a></li>
+        <li><a href="index3.html">Displacement Map</a></li>
+        <li><a href="DA_1.html">Demographic Analysis</a></li>
+        <li><a href="DA_3.html">Housing Market</a ></li>
+        <li><a href="introduction.html">Introduction</a></li>
+        <li><a href="index.html">Home</a></li>
+        <!-- <li><a href="index.html">Home</a></li>
+          <li><a href="introduction.html">Introduction</a></li>
+          <li><a href="index3.html">Displacement Map</a></li>
+          <li><a href="">Demographic Analysis</a></li>
+          <li><a href="team.html">Team</a></li> -->
+    </ul>
+    
     <div id="container">
-        <div id="info-panel">
+        <div id="info-panel">  
+
             <h2>Feature Information</h2>
             <ul id="feature-properties"></ul>
             <div id="feature-properties">
-                <h3></h3>
-                <p>Click on an area to see more information. Use the buttons to switch between displacement index and housing conditions.</p>
+                <h3>Welcome!</h3>
+                <p>Click on an area to see more information. Use the right panel to switch between fields.</p>
+                <p>Navigate through the displacement risk map to observe the potential displacement risk across city neighborhoods in comparison to each other. Choose a neighborhood to get a detailed analysis of the elements contributing to displacement risk, which include population vulnerability, housing conditions, and market pressure, as well as the data points that make up these elements.</p>
             </div>
             
         </div>
-        <div id="map"></div>
-        <div class='map-overlay'>
-            <div class='map-overlay-inner'>
-                <h3><strong>Displacement Map<strong></h3>
+        
+        <div id="map">
+            <div id="legend" class="legend"></div>
+        </div>
+
+        <!-- <div class='map-overlay'>
+             <div class='map-overlay-inner'> 
                 <table><tr><td>
-                  <input type="radio" name="layers" id="displacement" value="DsplcRI" checked><label><strong>Diaplacement Index &nbsp; &nbsp;</strong></label><br>
-                  <input type="radio" name="layers" id="housing" value="HsngCnd"><label><strong>Housing Conditions &nbsp; </strong></label><br>
+                    <a href="#" class="citylink" id="back_center">Take Me Back</a>
                  </td>
                  </tr>
-            </div>
+            </div>           
+        </div> -->
+
+        <div id="variable-selector" class="variable-navbar">
+            <a href="#" id="displacement">Displacement Index</a>
+            <p>The level of risk residents face of being unable to remain in their homes or neighborhoods.</p>
+            <a href="#" id="housing">Housing Conditions</a>
+            <p>The characteristics of housing in a neighborhood that can either help stabilize households or lead to greater instability.</p>
+            <a href="#" id="market">Market Pressure</a>
+            <p>The broader conditions affecting neighborhoods that tend to make it harder for lower-income residents to remain or find new housing in the area.</p>
+            <a href="#" id="popu">Population Vulnerability</a> 
+            <p>The demographic and socioeconomic characteristics of a neighborhood's residents that may make them more susceptible to displacement.</p>              
         </div>
     </div>
+    
+    <!-- <div id="page2" style="width: 100%;">
+        Your new content here
+        <div id="header"><h2>Demographic Change</h2></div>
+        
+        <div id="map2">
+        
+        </div>
+    </div> -->
+    
+
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
     <script src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </body>
 
 </html>
+
+
