@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/img/casalogo.png" rel="icon"> 
+    <title>Boro</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #container {
+            display: flex;
+            height: 91.8%; /* adjust as necessary based on the height of your navbar */
+            margin-top: 0px; /* adjust as necessary based on the height of your navbar */
+            width: 60%;
+        }
+
+
+        #map {
+            flex-grow: 1;
+            
+        }
+        ul.navbar {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        ul.navbar{
+            position: flex;
+            top: 0;
+            width: 100%;
+            height: 70px; 
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            
+            background-color: #008374;
+            opacity: 1;
+            
+        }
+
+        li{
+            float: right;
+        }
+        ul.navbar li{
+            white-space: nowrap;
+            padding: 10px 0 10px 28px;
+        }
+        ul.navbar li a{
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 17px;
+            text-decoration: none;
+            font-family:'Montserrat',sans-serif;
+            font-weight: bold;
+            position: relative;
+        }
+        ul.navbar li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: red;
+            bottom: 0;
+            left: 50%;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        /* ul.navbar li a:hover{
+                      color: white  ;
+                /* font-weight: bold;
+        background-color: #bba7cb; */
+                      /* font-weight: bold;
+                      border-bottom: 2px solid red
+
+
+        } */ 
+        ul.navbar li a:hover::after {
+            width: 100%;
+        }
+        .map-overlay {
+            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            position: absolute;
+            top: 10%;
+            left: 0px;
+            width: 15%;
+            padding: 20px;
+        }
+
+        .map-overlay .map-overlay-inner {
+            background-color: #fff;
+            box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+            border-radius: 3px;
+            opacity: 0.9;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+
+</style>
+    
+</head>
+<body>
+    <ul class="navbar">
+        <!-- <li style="float:right"><a  href="Home.html">Home</a></li> -->
+        <!-- <li><a class="active" href="About.html">Introduction</a></li> -->                      
+        <li><a href="team.html">Team</a></li>
+        <li><a href="data_bib.html">Data</a></li>
+        <li><a href="brook.html">Brooklyn</a></li>
+        <li><a href="index3.html">Displacement Map</a></li>
+        <li><a href="DA_1.html">Demographic Analysis</a></li>
+        <li><a href="DA_3.html">Housing Market</a ></li>
+        <li><a href="introduction.html">Introduction</a></li>
+        <li><a href="index.html">Home</a></li>
+    </ul>
+    <div id="container">
+        <div id="map">
+        </div>
+        <div class='map-overlay'>
+            <div class='map-overlay-inner'>
+                <h3><strong>Population Change<strong></h3>
+                <table><tr><td>
+                  <input type="radio" name="layers" id="pop" value="PopChng" checked><label><strong> Whole Poppulation &nbsp; &nbsp;</strong></label><br>
+                  <input type="radio" name="layers" id="his" value="HSp_PpC"><label><strong>Hispanic &nbsp; </strong></label><br>
+                  <input type="radio" name="layers" id="whi" value="WNH_PpC"><label><strong>White &nbsp; </strong></label><br>
+                  <input type="radio" name="layers" id="black" value="BNH_PpC"><label><strong>Black &nbsp; </strong></label><br>
+                  <input type="radio" name="layers" id="asian" value="ANH_PpC"><label><strong>Asian &nbsp; </strong></label><br>
+                 </td>
+                 </tr>
+            </div>
+        </div>
+
+    </div>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
+    <script src="map.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</body>
+
+</html>

@@ -114,19 +114,19 @@ map.on('load', () => {
         }
     });
 
-    // map.addLayer({
-    //     'id': 'borough-labels',
-    //     'type': 'symbol',
-    //     'source': 'boroughs',
-    //     'layout': {
-    //         'text-field': ['get', 'boro_name'],
-    //         'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-    //         'text-size': 14
-    //     },
-    //     'paint': {
-    //         'text-color': 'rgba(0,0,0,0.5)'
-    //     }
-    // });
+    map.addLayer({
+        'id': 'borough-labels',
+        'type': 'symbol',
+        'source': 'boroughs',
+        'layout': {
+            'text-field': ['get', 'boro_name'],
+            'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+            'text-size': 14
+        },
+        'paint': {
+            'text-color': '#FF5733'
+        }
+    });
     
     var legend = document.getElementById('legend');
     legend.innerHTML = '';
