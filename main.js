@@ -296,8 +296,8 @@ map.on('click', function(e) {
         infoPanelContent += '<p class="second">ADJACENT NEIGHBORHOOD PRESSURE</p>';
         infoPanelContent += '<p class="third">' + properties.Adjcncy + '</p>';
         infoPanelContent += '<hr class="inside">';
-        infoPanelContent += '<p class="second">CHANGE IN POPULATION WITH A BACHELOR\'S DEGREE OR HIGHER</p>';
-        infoPanelContent += '<p class="fourth">' + properties.ChIPWBD + '</p>';
+        infoPanelContent += '<p class="second">BACHELORS DEGREE OR HIGHER CHANGE</p>';
+        infoPanelContent += '<p class="fourth">' + properties.CIPWBDV + '</p>';
         infoPanelContent += '<hr>';
 
         infoPanelContent += '<p class="first">Population Vulnerability: ' + properties.PpltnVl + '</p>';
@@ -332,6 +332,7 @@ map.on('click', function(e) {
         OrgContent += '<h3>Welcome!</h3>';
         OrgContent += '<p>Click on an area to see more information. Use the right panel to switch between fields.</p>';
         OrgContent += 'Navigate through the displacement risk map to observe the potential displacement risk across city neighborhoods in comparison to each other. Choose a neighborhood to get a detailed analysis of the elements contributing to displacement risk, which include population vulnerability, housing conditions, and market pressure, as well as the data points that make up these elements.</p>'
+        OrgContent += '<ul class = download><li><a href=\'https://equity-tool-data.nyc3.digitaloceanspaces.com/DRI_Subindices_Indicators.xls\'>Download Data</a ></li><ul>'
         document.getElementById('info-panel').innerHTML = OrgContent;
         
     });
