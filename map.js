@@ -127,6 +127,17 @@ map.on('load', () => {
             'text-color': '#08214D'
         }
     });
+    var legend = document.getElementById('legend');
+    legend.innerHTML = '';
+    // legend.innerHTML = '<h3>Displacement Risk Index</h3>';
+    var disgrades = ['80000', '100000', '170000', '230000', '250000'];
+    var discolors = ['#B3CDE0', '#6897BB', '#1F78B4', '#053061', '#011627'];   
+    // loop through our intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < disgrades.length; i++) {
+        legend.innerHTML +=
+            '<i style="background:' + discolors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
+            disgrades[i] + '<br>';
+    }
     
 });
 
@@ -178,47 +189,50 @@ document.getElementById('asian').addEventListener('change', function() {
     map.setPaintProperty('asian', 'fill-opacity', 1);
     // ... repeat for all other layers
 });
-const propertiesToDisplay = {
     
-    'DsplcRI': 'Displacement Risk',
-    'HsngCnd': 'Housing Conditions',
-    'MrktPrs': 'Market Pressure',
-    'PpltnVl': 'Population Vulnerability'
-    
-};
-function setupLayerMouseEffects(layerName) {
-    map.on('mousemove', layerName, (e) => {
-        const properties = e.features[0].properties;
-        let popupContent = '<h3>' + properties.boro_nm + '</h3><ul>';
+var originalFeatureProperties = document.getElementById("feature-properties").innerHTML;
+map.on('click', function(e) {
+    var properties = map.queryRenderedFeatures(e.point)[0].properties;
+    var infoPanelContent = '';
 
-        // if (properties.hasOwnProperty('boro_name')) {
-        //     popupContent += `<li>Borough: ${properties.boro_name}</li>`;
-        // }
+    // Always show the same data
+    infoPanelContent = '<button id="back-button" >&larr;Back</button>';
+    // if name 等于 ‘’ 一直往下加  跟geojson 对应 在GitHub里
+    // 调整一下格式
+    //放统计图 flourish
+    if (properties.boro_nm == 'Staten Island') {
+    infoPanelContent += '<h2><div style="display: flex; justify-content: center;"></h2>';
+    infoPanelContent += '<div style="width: 60%;">';
+    infoPanelContent += '<div class="flourish-embed flourish-chart" data-src="visualisation/13780817"><script src="https://public.flourish.studio/resources/embed.js"></script></div>';
+    infoPanelContent += '<div class="flourish-embed flourish-chart" data-src="visualisation/13781075" style="margin: 0 auto;"></div>';
+    infoPanelContent += '<p>Gentrification promotes the investment in community’s educational infrastructure and increases educational opportunities; higher-income residents are more likely to have high levels of education, so their moves into the community would raise the level of community education. However, some low-income residents have to move into less gentrified communities due to displacement, reducing their access to higher quality of education and leading to education inequality.</p>';
+    console.log(Object.keys(properties)); 
+
+    }else {
+        infoPanelContent += '<h2>No data available for this area</h2>';
+    }
+    infoPanelContent += originalFeatureProperties; 
+    document.getElementById('chart').innerHTML = infoPanelContent;
+    document.getElementById("back-button").style.display = 'block';
+
+    document.getElementById('back-button').addEventListener('click', function () {
+        var OrgContent = '';
+        OrgContent = '<h2>Feature Information</h2>';
+        OrgContent += '<h3>Welcome!</h3>';
+        OrgContent += '<p>Click on an area to see charts. Use the right panel to switch between fields.</p>';
+        // OrgContent += 'Navigate through the displacement risk map to observe the potential displacement risk across city neighborhoods in comparison to each other. Choose a neighborhood to get a detailed analysis of the elements contributing to displacement risk, which include population vulnerability, housing conditions, and market pressure, as well as the data points that make up these elements.</p>'
+        // OrgContent += '<ul class = download><li><a href=\'https://equity-tool-data.nyc3.digitaloceanspaces.com/DRI_Subindices_Indicators.xls\'>Download Data</a ></li><ul>'
+        document.getElementById('chart').innerHTML = OrgContent;
         
-        for (const originalProperty in propertiesToDisplay) {
-            if (properties.hasOwnProperty(originalProperty)) {
-                const displayName = propertiesToDisplay[originalProperty];
-                popupContent += `<li>${displayName}: ${properties[originalProperty]}</li>`;
-            }
-        }
-        popupContent += '</ul>';
-
-        popup.setLngLat(e.lngLat).setHTML(popupContent);
     });
-
-    map.on('mouseenter', layerName, () => {
-        map.getCanvas().style.cursor = 'pointer';
-        popup.addTo(map);
+    
     });
-
-    map.on('mouseleave', layerName, () => {
-        map.getCanvas().style.cursor = '';
-        popup.remove();
-    });
-}
-
-// Now you can call setupLayerMouseEffects for each of your layers
-setupLayerMouseEffects('displacement');
-setupLayerMouseEffects('housing');
-setupLayerMouseEffects('market');
-setupLayerMouseEffects('popu');
+// const propertiesToDisplay = {
+    
+//     'PopChng': 'Whole Population',
+//     'HSp_PpC': 'Hispanic',
+//     'WNH_PpC': 'White',
+//     'BNH_PpC': 'Black',
+//     'ANH_PpC': 'Asian'
+    
+// };
