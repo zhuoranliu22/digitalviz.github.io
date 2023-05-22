@@ -46,11 +46,11 @@ map.on('load', () => {
             'fill-color': [
                 'match',
                 ['get', 'HsngCnd'],
-                'Lowest', '#4d5d53',
-                'Lower', '#729d80',
-                'Intermediate', '#738276',
-                'Higher', '#9eb08d',
-                'Highest', '#626c41',
+                'Lowest', '#D5F5C8',
+                'Lower', '#ABC7A2',
+                'Intermediate', '#84997C',
+                'Higher', '#606F5B',
+                'Highest', '#3D473A',
                 '#000000' // fallback color if none of the categories match
             ],
             'fill-opacity': 0           
@@ -86,11 +86,11 @@ map.on('load', () => {
             'fill-color': [
                 'match',
                 ['get', 'PpltnVl'],
-                'Lowest', '#EEEEEE',
-                'Lower', '#FFEAD2',
-                'Intermediate', '#DBDFEA',
-                'Higher', '#ACB1D6',
-                'Highest', '#8294C4',
+                'Lowest', '#CEFAFC',
+                'Lower', '#ACDADC',
+                'Intermediate', '#8BB1B2',
+                'Higher', '#708D8E',
+                'Highest', '#46595A',
                 '#000000' // fallback color if none of the categories match
             ],
             'fill-opacity': 0           
@@ -124,7 +124,9 @@ map.on('load', () => {
             'text-size': 14
         },
         'paint': {
-            'text-color': '#FF5733'
+            'text-color': '#FFF',
+            'text-halo-color': '#000',    
+            'text-halo-width': 1
         }
     });
     
@@ -133,7 +135,6 @@ map.on('load', () => {
     // legend.innerHTML = '<h3>Displacement Risk Index</h3>';
     var disgrades = ['Lowest', 'Lower', 'Intermediate', 'Higher', 'Highest'];
     var discolors = ['#B3CDE0', '#6897BB', '#1F78B4', '#053061', '#011627'];   
-    // loop through our intervals and generate a label with a colored square for each interval
     for (var i = 0; i < disgrades.length; i++) {
         legend.innerHTML +=
             '<i style="background:' + discolors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
@@ -152,7 +153,6 @@ document.getElementById("displacement").addEventListener("click", function(){
     // legend.innerHTML = '<h3>Displacement Risk Index</h3>';
     var disgrades = ['Lowest', 'Lower', 'Intermediate', 'Higher', 'Highest'];
     var discolors = ['#B3CDE0', '#6897BB', '#1F78B4', '#053061', '#011627'];   
-    // loop through our intervals and generate a label with a colored square for each interval
     for (var i = 0; i < disgrades.length; i++) {
         legend.innerHTML +=
             '<i style="background:' + discolors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
@@ -168,8 +168,7 @@ document.getElementById("housing").addEventListener("click", function(){
     var legend = document.getElementById('legend');
     legend.innerHTML = '';
     var hou_grades = ['Lowest', 'Lower', 'Intermediate', 'Higher', 'Highest'];
-    var hou_colors = ['#4d5d53', '#729d80', '#738276', '#9eb08d', '#626c41'];   
-    // loop through our intervals and generate a label with a colored square for each interval
+    var hou_colors = ['#D5F5C8', '#ABC7A2', '#84997C', '#606F5B', '#3D473A'];   
     for (var i = 0; i < hou_grades.length; i++) {
         legend.innerHTML +=
             '<i style="background:' + hou_colors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
@@ -186,7 +185,6 @@ document.getElementById('market').addEventListener("click", function(){
     legend.innerHTML = '';
     var mar_grades = ['Lowest', 'Lower', 'Intermediate', 'Higher', 'Highest'];
     var mar_colors = ['#E9DADE', '#F3BEC6', '#C88EA7', '#99627A', '#643843'];   
-    // loop through our intervals and generate a label with a colored square for each interval
     for (var i = 0; i < mar_grades.length; i++) {
         legend.innerHTML +=
             '<i style="background:' + mar_colors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
@@ -202,8 +200,7 @@ document.getElementById("popu").addEventListener("click", function(){
     var legend = document.getElementById('legend');
     legend.innerHTML = '';
     var pop_grades = ['Lowest', 'Lower', 'Intermediate', 'Higher', 'Highest'];
-    var pop_colors = ['#EEEEEE', '#FFEAD2', '#DBDFEA', '#ACB1D6', '#8294C4'];   
-    // loop through our intervals and generate a label with a colored square for each interval
+    var pop_colors = ['#CEFAFC', '#ACDADC', '#8BB1B2', '#708D8E', '#46595A'];   
     for (var i = 0; i < pop_grades.length; i++) {
         legend.innerHTML +=
             '<i style="background:' + pop_colors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
@@ -228,8 +225,6 @@ const propertiesToDisplay = {
 const panelProperties = {
     'NTAName': 'Name',
     'DsplcRI': 'Displacement Risk'
-    
-    // Add more properties as needed
 };
 
 //map.on('click', 'displacement', (e) => {
@@ -262,11 +257,11 @@ const panelProperties = {
         // Go back to the welcome message when the "Back" button is clicked
     
 var originalFeatureProperties = document.getElementById("feature-properties").innerHTML;
+var orig = document.getElementById("info-panel").innerHTML;
 map.on('click', function(e) {
     var properties = map.queryRenderedFeatures(e.point)[0].properties;
     var infoPanelContent = '';
 
-    // Always show the same data
     infoPanelContent = '<button id="back-button" >&larr;Back</button>';
     if (properties.NTAName !== undefined) {
         infoPanelContent += '<h2>' + properties.NTAName + '</h2>';
@@ -319,7 +314,6 @@ map.on('click', function(e) {
         infoPanelContent += '<h2>No data available for this area</h2>';
     }
 
-    // ... add more data as needed
 
     
     infoPanelContent += originalFeatureProperties; 
@@ -328,12 +322,12 @@ map.on('click', function(e) {
 
     document.getElementById('back-button').addEventListener('click', function () {
         var OrgContent = '';
-        OrgContent = '<h2>Feature Information</h2>';
-        OrgContent += '<h3>Welcome!</h3>';
-        OrgContent += '<p>Click on an area to see more information. Use the right panel to switch between fields.</p>';
-        OrgContent += 'Navigate through the displacement risk map to observe the potential displacement risk across city neighborhoods in comparison to each other. Choose a neighborhood to get a detailed analysis of the elements contributing to displacement risk, which include population vulnerability, housing conditions, and market pressure, as well as the data points that make up these elements.</p>'
-        OrgContent += '<ul class = download><li><a href=\'https://equity-tool-data.nyc3.digitaloceanspaces.com/DRI_Subindices_Indicators.xls\'>Download Data</a ></li><ul>'
-        document.getElementById('info-panel').innerHTML = OrgContent;
+        // OrgContent = '<h2>Feature Information</h2>';
+        // OrgContent += '<h3>Welcome!</h3>';
+        // OrgContent += '<p>Click on an area to see more information. Use the right panel to switch between fields.</p>';
+        // OrgContent += 'Navigate through the displacement risk map to observe the potential displacement risk across city neighborhoods in comparison to each other. Choose a neighborhood to get a detailed analysis of the elements contributing to displacement risk, which include population vulnerability, housing conditions, and market pressure, as well as the data points that make up these elements.</p>'
+        // OrgContent += '<ul class = download><li><a href=\'https://equity-tool-data.nyc3.digitaloceanspaces.com/DRI_Subindices_Indicators.xls\'>Download Data</a ></li><ul>'
+        document.getElementById('info-panel').innerHTML = orig;
         
     });
     
@@ -442,6 +436,12 @@ function setupLayerMouseEffects(layerName) {
                 popupContent += `<li>${displayName}: ${properties[originalProperty]}</li>`;
             }
         }
+
+        // if (layerName === 'boroughs-layers') {
+        //     const boroName = properties.boro_name;
+        //     popupContent += `<li>Borough Name: ${boroName}</li>`;
+        // }
+
         popupContent += '</ul>';
 
         popup.setLngLat(e.lngLat).setHTML(popupContent);
@@ -463,6 +463,7 @@ setupLayerMouseEffects('displacement');
 setupLayerMouseEffects('housing');
 setupLayerMouseEffects('market');
 setupLayerMouseEffects('popu');
+// setupLayerMouseEffects('boroughs-layer'); 
 
 // document.getElementById('back_center').addEventListener('click', function () {
 //     var lat,long;

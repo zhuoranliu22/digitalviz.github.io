@@ -139,6 +139,15 @@ map.on('load', () => {
             disgrades[i] + '<br>';
     }
     
+
+
+  map.on('mouseenter', 'pop', function () {
+    map.getCanvas().style.cursor = 'pointer';
+  });
+  
+  map.on('mouseleave', 'pop', function () {
+    map.getCanvas().style.cursor = '';
+  });
 });
 
 // Initially set the 'fill-opacity' of all but one layer to 0
@@ -154,7 +163,17 @@ document.getElementById('pop').addEventListener('change', function() {
     map.setPaintProperty('whi', 'fill-opacity', 0);
     map.setPaintProperty('black', 'fill-opacity', 0);
     map.setPaintProperty('asian', 'fill-opacity', 0);
-    // ... repeat for all other layers
+    var legend = document.getElementById('legend');
+    legend.innerHTML = '';
+    // legend.innerHTML = '<h3>Displacement Risk Index</h3>';
+    var disgrades = ['80000', '100000', '170000', '230000', '250000'];
+    var discolors = ['#B3CDE0', '#6897BB', '#1F78B4', '#053061', '#011627'];   
+    // loop through our intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < disgrades.length; i++) {
+        legend.innerHTML +=
+            '<i style="background:' + discolors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
+            disgrades[i] + '<br>';
+    }
 });
 document.getElementById('his').addEventListener('change', function() {
     map.setPaintProperty('pop', 'fill-opacity', 0);
@@ -162,7 +181,17 @@ document.getElementById('his').addEventListener('change', function() {
     map.setPaintProperty('whi', 'fill-opacity', 0);
     map.setPaintProperty('black', 'fill-opacity', 0);
     map.setPaintProperty('asian', 'fill-opacity', 0);
-    // ... repeat for all other layers
+    var legend = document.getElementById('legend');
+    legend.innerHTML = '';
+    // legend.innerHTML = '<h3>Displacement Risk Index</h3>';
+    var disgrades = ['0', '20000', '54000', '65000', '66000'];
+    var discolors = ['#B3CDE0', '#6897BB', '#1F78B4', '#053061', '#011627'];   
+    // loop through our intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < disgrades.length; i++) {
+        legend.innerHTML +=
+            '<i style="background:' + discolors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
+            disgrades[i] + '<br>';
+    }
 });
 // ... repeat for all other radio buttons
 document.getElementById('whi').addEventListener('change', function() {
@@ -171,7 +200,17 @@ document.getElementById('whi').addEventListener('change', function() {
     map.setPaintProperty('whi', 'fill-opacity', 1);
     map.setPaintProperty('black', 'fill-opacity', 0);
     map.setPaintProperty('asian', 'fill-opacity', 0);
-    // ... repeat for all other layers
+    var legend = document.getElementById('legend');
+    legend.innerHTML = '';
+    // legend.innerHTML = '<h3>Displacement Risk Index</h3>';
+    var disgrades = ['-50000', '-22000', '-20000', '32000', '76000'];
+    var discolors = ['#B3CDE0', '#6897BB', '#1F78B4', '#053061', '#011627'];   
+    // loop through our intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < disgrades.length; i++) {
+        legend.innerHTML +=
+            '<i style="background:' + discolors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
+            disgrades[i] + '<br>';
+    }
 });
 document.getElementById('black').addEventListener('change', function() {
     map.setPaintProperty('pop', 'fill-opacity', 0);
@@ -179,7 +218,17 @@ document.getElementById('black').addEventListener('change', function() {
     map.setPaintProperty('whi', 'fill-opacity', 0);
     map.setPaintProperty('black', 'fill-opacity', 1);
     map.setPaintProperty('asian', 'fill-opacity', 0);
-    // ... repeat for all other layers
+    var legend = document.getElementById('legend');
+    legend.innerHTML = '';
+    // legend.innerHTML = '<h3>Displacement Risk Index</h3>';
+    var disgrades = ['-60000', '-10000', '0', '2600', '2700'];
+    var discolors = ['#B3CDE0', '#6897BB', '#1F78B4', '#053061', '#011627'];   
+    // loop through our intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < disgrades.length; i++) {
+        legend.innerHTML +=
+            '<i style="background:' + discolors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
+            disgrades[i] + '<br>';
+    }
 });
 document.getElementById('asian').addEventListener('change', function() {
     map.setPaintProperty('pop', 'fill-opacity', 0);
@@ -187,46 +236,124 @@ document.getElementById('asian').addEventListener('change', function() {
     map.setPaintProperty('whi', 'fill-opacity', 0);
     map.setPaintProperty('black', 'fill-opacity', 0);
     map.setPaintProperty('asian', 'fill-opacity', 1);
-    // ... repeat for all other layers
+    var legend = document.getElementById('legend');
+    legend.innerHTML = '';
+    // legend.innerHTML = '<h3>Displacement Risk Index</h3>';
+    var disgrades = ['20000', '25000', '43000', '120000', '150000'];
+    var discolors = ['#B3CDE0', '#6897BB', '#1F78B4', '#053061', '#011627'];   
+    // loop through our intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < disgrades.length; i++) {
+        legend.innerHTML +=
+            '<i style="background:' + discolors[i] + '; width: 14px; height: 14px; display: inline-block; margin-right: 2px;"></i> ' +
+            disgrades[i] + '<br>';
+    }
 });
     
 var originalFeatureProperties = document.getElementById("feature-properties").innerHTML;
-map.on('click', function(e) {
-    var properties = map.queryRenderedFeatures(e.point)[0].properties;
-    var infoPanelContent = '';
+var orig = document.getElementById("chart").innerHTML;
 
-    // Always show the same data
-    infoPanelContent = '<button id="back-button" >&larr;Back</button>';
-    // if name 等于 ‘’ 一直往下加  跟geojson 对应 在GitHub里
-    // 调整一下格式
-    //放统计图 flourish
-    if (properties.boro_nm == 'Staten Island') {
-    infoPanelContent += '<h2><div style="display: flex; justify-content: center;"></h2>';
-    infoPanelContent += '<div style="width: 60%;">';
-    infoPanelContent += '<div class="flourish-embed flourish-chart" data-src="visualisation/13780817"><script src="https://public.flourish.studio/resources/embed.js"></script></div>';
-    infoPanelContent += '<div class="flourish-embed flourish-chart" data-src="visualisation/13781075" style="margin: 0 auto;"></div>';
-    infoPanelContent += '<p>Gentrification promotes the investment in community’s educational infrastructure and increases educational opportunities; higher-income residents are more likely to have high levels of education, so their moves into the community would raise the level of community education. However, some low-income residents have to move into less gentrified communities due to displacement, reducing their access to higher quality of education and leading to education inequality.</p>';
-    console.log(Object.keys(properties)); 
+// add popup 
+map.on('click', 'pop', function (e) {
+    var coordinates = e.lngLat;
+    var properties = e.features[0].properties;
+  
+    new mapboxgl.Popup()
+      .setLngLat(coordinates)
+      .setHTML('<h3>Feature Information</h3>' +
+               '<p>Population Change: ' + properties.PopChng + '</p>' +
+               '<p>Hispanic Population per Capita: ' + properties.HSp_PpC + '</p>' +
+               '<p>White Non-Hispanic Population per Capita: ' + properties.WNH_PpC + '</p>' +
+               '<p>Black Non-Hispanic Population per Capita: ' + properties.BNH_PpC + '</p>' +
+               '<p>Asian Non-Hispanic Population per Capita: ' + properties.ANH_PpC + '</p>')
+      .addTo(map);
+  });
+  
+ 
+  
 
-    }else {
-        infoPanelContent += '<h2>No data available for this area</h2>';
-    }
-    infoPanelContent += originalFeatureProperties; 
-    document.getElementById('chart').innerHTML = infoPanelContent;
-    document.getElementById("back-button").style.display = 'block';
 
-    document.getElementById('back-button').addEventListener('click', function () {
-        var OrgContent = '';
-        OrgContent = '<h2>Feature Information</h2>';
-        OrgContent += '<h3>Welcome!</h3>';
-        OrgContent += '<p>Click on an area to see charts. Use the right panel to switch between fields.</p>';
-        // OrgContent += 'Navigate through the displacement risk map to observe the potential displacement risk across city neighborhoods in comparison to each other. Choose a neighborhood to get a detailed analysis of the elements contributing to displacement risk, which include population vulnerability, housing conditions, and market pressure, as well as the data points that make up these elements.</p>'
-        // OrgContent += '<ul class = download><li><a href=\'https://equity-tool-data.nyc3.digitaloceanspaces.com/DRI_Subindices_Indicators.xls\'>Download Data</a ></li><ul>'
-        document.getElementById('chart').innerHTML = OrgContent;
+
+
+// map.on('click', function(e) {
+
+//     var properties = map.queryRenderedFeatures(e.point)[0].properties;
+//     var infoPanelContent = '';
+
+//     // Always show the same data
+//     infoPanelContent = '<button id="back-button" >&larr;Back</button>';
+//     // 
+//     //place flourish here
+//     if (properties.boro_nm == 'Staten Island') {
+//     infoPanelContent += '<h2><div style="display: flex; justify-content: center;"></h2>';
+//     infoPanelContent += '<div style="width: 60%;">';
+//     infoPanelContent += '<p>textext 小岛</p>';
+//     console.log(Object.keys(properties)); }
+//     //QN
+//     if (properties.boro_nm == 'Queens') {
+//     infoPanelContent += '<h2><div style="display: flex; justify-content: center;"></h2>';
+//     infoPanelContent += '<div style="width: 60%;">';
+//     infoPanelContent += '<p>皇后区</p>';
+//     infoPanelContent += '<div class="flourish-embed flourish-chart" data-src="visualisation/13836618"><script src="https://public.flourish.studio/resources/embed.js"></script></div>';
+//     console.log(Object.keys(properties)); }
+//     //MN
+//     // if (properties.boro_nm == 'Manhattan') {
+//     // infoPanelContent += '<h2><div style="display: flex; justify-content: center;"></h2>';
+//     // infoPanelContent += '<div style="width: 60%;">';
+//     // infoPanelContent += '<p>曼哈顿</p>';
+//     // infoPanelContent += '<div class="flourish-embed flourish-chart" data-src="visualisation/13836481"><script src="https://public.flourish.studio/resources/embed.js"></script></div>';
+//     // console.log(Object.keys(properties)); }
+//     if (properties.boro_nm == 'Manhattan') {
+//         infoPanelContent += '<h2><div style="display: flex; justify-content: center;"></h2>';
+//         infoPanelContent += '<div style="width: 60%;">';
+//         infoPanelContent += '<p>曼哈顿</p>';
+      
+//         // Insert a bar chart
+//         infoPanelContent += '<div class="bar-chart">';
+//         infoPanelContent += '<div class="bar" style="height: 80%"></div>';
+//         infoPanelContent += '<div class="bar" style="height: 60%"></div>';
+//         infoPanelContent += '<div class="bar" style="height: 40%"></div>';
+//         infoPanelContent += '<div class="bar" style="height: 20%"></div>';
+//         infoPanelContent += '</div>';
         
-    });
-    
-    });
+//         console.log(Object.keys(properties));
+//       }
+      
+//     //Bronx
+//     if (properties.boro_nm == 'Bronx') {
+//     infoPanelContent += '<h2><div style="display: flex; justify-content: center;"></h2>';
+//     infoPanelContent += '<div style="width: 60%;">';
+//     infoPanelContent += '<p>Bronx</p>';
+//     infoPanelContent += '<div class="flourish-embed flourish-chart" data-src="visualisation/13836481"><script src="https://public.flourish.studio/resources/embed.js"></script></div>';
+//     console.log(Object.keys(properties)); }
+//     //布鲁克林
+//     if (properties.boro_nm == 'Brooklyn') {
+//     infoPanelContent += '<h2><div style="display: flex; justify-content: center;"></h2>';
+//     infoPanelContent += '<div style="width: 60%;">';
+//     infoPanelContent += '<p>布鲁克林</p>';
+//     infoPanelContent += '<div class="flourish-embed flourish-chart" data-src="visualisation/13836481"><script src="https://public.flourish.studio/resources/embed.js"></script></div>';
+//     console.log(Object.keys(properties)); }
+
+// })
+    // else {
+    // infoPanelContent += '<h2>No data available for this area</h2>';
+    // }
+//     infoPanelContent += originalFeatureProperties; 
+//     document.getElementById('chart').innerHTML = infoPanelContent;
+//     document.getElementById("back-button").style.display = 'block';
+
+//     document.getElementById('back-button').addEventListener('click', function () {
+//         var OrgContent = '';
+//         // OrgContent = '<h2>Feature Information</h2>';
+//         // OrgContent += '<h3>Welcome!</h3>';
+//         // OrgContent += '<p>Click on an area to see charts. Use the right panel to switch between fields.</p>';
+       
+//         // OrgContent += 'Navigate through the displacement risk map to observe the potential displacement risk across city neighborhoods in comparison to each other. Choose a neighborhood to get a detailed analysis of the elements contributing to displacement risk, which include population vulnerability, housing conditions, and market pressure, as well as the data points that make up these elements.</p>'
+//         // OrgContent += '<ul class = download><li><a href=\'https://equity-tool-data.nyc3.digitaloceanspaces.com/DRI_Subindices_Indicators.xls\'>Download Data</a ></li><ul>'
+//         document.getElementById('chart').innerHTML = orig;
+        
+//     });
+// })
+    // });
 // const propertiesToDisplay = {
     
 //     'PopChng': 'Whole Population',
@@ -235,4 +362,4 @@ map.on('click', function(e) {
 //     'BNH_PpC': 'Black',
 //     'ANH_PpC': 'Asian'
     
-// };
+// }

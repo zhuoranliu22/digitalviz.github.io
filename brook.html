@@ -14,7 +14,7 @@
         }
         #container {
             display: flex;
-            height: 91.8%; /* adjust as necessary based on the height of your navbar */
+            height: 95%; /* adjust as necessary based on the height of your navbar */
             margin-top: 0px; /* adjust as necessary based on the height of your navbar */
             width: 100%;
         }
@@ -100,7 +100,7 @@
             font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
             position: absolute;
             top: 10%;
-            left: 22.5%;
+            left: 45%;
             width: 15%;
             padding: 20px;
             
@@ -115,63 +115,23 @@
             margin-bottom: 10px;
         }
         #chart {
-            width: 300px;
+            width: 600px;
             background-color: rgba(255, 255, 255, 0.6);
-            opacity: 0.6;
+            opacity: 1;
             padding: 20px;
             overflow-y: auto;
             
             font-family: Arial, sans-serif;
         }
 
-
     
-        #info-panel h2 {
-            margin-top: 0;
-            color: #008374;
-        }
-    
-        #info-panel ul {
-            list-style-type: none;
-            padding: 0;
-        }
-    
-        #info-panel li {
-            margin-bottom: 10px;
-        }
-    
-        #info-panel .property-label {
-            font-weight: bold;
-            color: #3b7bbf;
-        }
-
-        #info-panel p.first{
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 40px;
-        }
-        #info-panel p.second{
-            margin-left: 15px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #0a4e0d;
-        }
-        #info-panel p.third{
-            margin-left: 15px;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        #info-panel p.fourth{
-            margin-left: 15px;
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
         .legend {
         background-color: #fff;
         opacity: 0.7;
         border-radius: 3px;
-        bottom: 80px;
+        left: 88%;
+        width: 15%;
+        bottom: 20px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
         padding: 10px;
@@ -217,15 +177,21 @@
 
     <div id="container">
         <div id="chart">  
-            <h2>Feature Information</h2>
+            <h2>NYC Borough Demographic Conditions </h2>
             <ul id="feature-properties"></ul>
             <div id="feature-properties">
-                <h3>Welcome!</h3>
-                <p>Click on an area to see more information. Use the right panel to switch between fields.</p>
-                <p>Navigate through the displacement risk map to observe the potential displacement risk across city neighborhoods in comparison to each other. Choose a neighborhood to get a detailed analysis of the elements contributing to displacement risk, which include population vulnerability, housing conditions, and market pressure, as well as the data points that make up these elements.</p>
-                <ul class = download>
-                    <li><a href='https://equity-tool-data.nyc3.digitaloceanspaces.com/DRI_Subindices_Indicators.xls'>Download Data</a ></li>
-                    </ul>
+                <h3>Population change by race from 2010 to 2020</h3>
+                <p>Statistical charts of population change in the five boroughs of New York are shown below:</p>
+    
+                    <div class="flourish-embed flourish-chart" data-src="visualisation/13836649"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+                    <!-- MN -->
+                    <div class="flourish-embed flourish-chart" data-src="visualisation/13836650"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+                    <!-- SI  -->
+                    <div class="flourish-embed flourish-chart" data-src="visualisation/13836661"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+                   <!-- QUEENS -->
+                    <div class="flourish-embed flourish-chart" data-src="visualisation/13836618"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+                    <!-- BRONX -->
+                    <div class="flourish-embed flourish-chart" data-src="visualisation/13836658"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
             </div>
             
         </div>
@@ -268,9 +234,13 @@
         </div> -->
     </div>
 
+
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
     <script src="map.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
 
 </body>
 
