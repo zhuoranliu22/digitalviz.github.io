@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1Ijoiemh1b3JhbmxpdSIsImEiOiJjbGQxbDR6M2QyN2s5M3BudnhrZGV0bTRyIn0.dG9Q884uSu_yGHLnc0KLnA';
+mapboxgl.accessToken = 'pk.eyJ1Ijoiemh1b3JhbmxpdSIsImEiOiJjbHA5aGpycXgyb2ZzMmlwYmFja2hsamk2In0.E2Z1QgTEBkXkJ4lAAEfmhg';
 
 const map = new mapboxgl.Map({
 
